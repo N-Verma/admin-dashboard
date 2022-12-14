@@ -13,15 +13,42 @@ import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
+import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+
+const titlesarr = ["Dashboard", "Manage Team","Contact Information","Invoices Balance","Profile Form","Calender","FAQ Page","Bar Chart",
+"Pie Chart","Line Chart","Geography Chart"];
+const linkarr=["/","/team","/contacts","/invoices","/profile","/calender","/faq","/bar","/line","/pie","/geography"]
+const iconarr=[<HomeOutlinedIcon/>,<PeopleOutlinedIcon/>,<ContactsOutlinedIcon/>,<ReceiptOutlinedIcon/>,<PersonOutlineOutlinedIcon/>,
+<CalendarTodayOutlinedIcon/>,<HelpOutlineOutlinedIcon/>,<BarChartOutlinedIcon/>,<PieChartOutlineOutlinedIcon/>,<TimelineOutlinedIcon/>,
+<MapOutlinedIcon/>]
+
+
+const Item=({key,title, to, icon,selected,setSelected})=>{
+    const theme = useTheme();
+    const colors = token(theme.palette.mode);
+    return(
+        
+        <MenuItem active={selected===title}
+            style={{color:colors.grey[100]}}
+            onClick={()=>setSelected(title)}
+            icon={icon}
+            
+        >
+            <Typography>{title}</Typography>
+            <Link to={to} />
+        </MenuItem>
+
+    )
+}
 
 const Sidebar=()=>{
     const theme = useTheme();
     const colors = token(theme.palette.mode);
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [selected, setSelected] = useState('Dashboard');
+    const [selected, setSelected] = useState("Dashboard");
 
     return(
         <Box
@@ -43,9 +70,32 @@ const Sidebar=()=>{
                 },
             }}
         >
-            <ProSidebar>
+            <ProSidebar collapsed={isCollapsed}>
                 <Menu iconShape="square">
-                    <MenuItem>
+                    {/* LOGO */}
+                    <MenuItem
+                    onClick={()=>setIsCollapsed(!isCollapsed)}
+                    icon={isCollapsed?<MenuOutlinedIcon/>:undefined}
+                    style={{
+                        margin:"10px 0 20px 0",
+                        color:colors.grey[100]
+                    }}
+                    >
+                         {!isCollapsed && (
+                          <Box
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            ml="15px"
+                          >
+                            <Typography variant="h3" color={colors.grey[100]}>
+                              ADMIN
+                            </Typography>
+                            <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                              <MenuOutlinedIcon />
+                            </IconButton>
+                          </Box>
+                        )}
                     </MenuItem>
 
                     {/* USER */}
@@ -60,12 +110,30 @@ const Sidebar=()=>{
                                     style={{cursor:"pointer", borderRadius:"50%"}}
                                 />
                             </Box>
-                            <Box>
-                                <Typography> Hunter </Typography>
-                                <Typography> Love sex doka </Typography>
+                            <Box textAlign="center">
+                                <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{m:"10px 0 0 0"}}> 
+                                Hunter </Typography>
+                                <Typography variant="h5" color={colors.grey[500]}> Love sex doka </Typography>
                             </Box>
                         </Box>
                     )}
+                    {/* USER ITEM */}
+                    <Box paddingLeft={isCollapsed?undefined:"10%"}>
+                        {/* <Item 
+                            title="Dashboard"
+                            to="/"
+                            icon={<HomeOutlinedIcon/>}
+                            selected={selected}
+                            setSelected={setSelected}
+                        /> */}
+                        {
+                            titlesarr.map((tit,i)=>{
+                                return <Item key={i} title={tit} to={linkarr[i]} icon={iconarr[i]} selected={selected} 
+                                setSelected={setSelected} />
+                            })
+                        }
+                        
+                    </Box>
                 </Menu>
             </ProSidebar>
         </Box>
