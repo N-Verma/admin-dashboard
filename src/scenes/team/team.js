@@ -11,7 +11,7 @@ const Team=()=>{
     const colors = token(theme.palette.mode);
     const columns = [{field:"id", headerName:"ID"},
                     {field:"name", headerName:"Name", flex:1, cellClassName:"name-column--cell"},
-                    {field:"age", headerName:"Age",type:"number",headerAligh:"left", align:"left"},
+                    {field:"age", headerName:"Age",type:"number",headerAlign:"left", align:"left"},
                     {field:"phone", headerName:"Phone Number",  flex:1},
                     {field:"email", headerName:"EMAIL" , flex:1},               
                     {field:"access", headerName:"Access",flex:1, renderCell:({row:{access}})=>{
@@ -38,9 +38,12 @@ const Team=()=>{
                     
                     ]
     return(
-        <Box>
+        <Box m="20px">
             <Header title="TEAM" subtitle="Manage team members" />
-            <Box m="40px 0 0 0" height="75vh" sx={{
+            <Box m="40px 0 10px 0" height="75vh" sx={{
+                // "& .MuiBox-root":{
+                //     ml:"50px"
+                // },
                 "& .MuiDataGrid-root":{
                     border:"none"
                 },
@@ -57,9 +60,7 @@ const Team=()=>{
                 "& .MuiDataGrid-virtualScroller":{
                     backgroundColor:colors.primary[400]
                 },
-                "& .MuiDataGrid-virtualScroller":{
-                    backgroundColor:colors.primary[400]
-                },
+                
                 "& .MuiDataGrid-footerContainer":{
                     borderTop:"none",
                     backgroundColor:colors.blueAccent[700]
