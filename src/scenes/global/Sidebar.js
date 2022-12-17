@@ -14,24 +14,35 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 
 const titlesarr = ["Dashboard", "Manage Team","Contact Information","Invoices Balance","Profile Form","Calender","FAQ Page","Bar Chart",
 "Pie Chart","Line Chart","Geography Chart"];
-const linkarr=["/","/team","/contacts","/invoices","/profile","/calender","/faq","/bar","/line","/pie","/geography"]
+const linkarr=["/","/team","/contacts","/invoices","/profile","/calendar","/faq","/bar","/line","/pie","/geography"]
 const iconarr=[<HomeOutlinedIcon/>,<PeopleOutlinedIcon/>,<ContactsOutlinedIcon/>,<ReceiptOutlinedIcon/>,<PersonOutlineOutlinedIcon/>,
 <CalendarTodayOutlinedIcon/>,<HelpOutlineOutlinedIcon/>,<BarChartOutlinedIcon/>,<PieChartOutlineOutlinedIcon/>,<TimelineOutlinedIcon/>,
 <MapOutlinedIcon/>]
 
+
+const items=(i,j,selected,setSelected)=>{
+    const arr=[]
+    for(var k=i;k<=j;k++){
+        arr.push(
+            <Item title={titlesarr[k]} to={linkarr[k]} icon={iconarr[k]} selected={selected} 
+                                setSelected={setSelected} />
+        )
+    }
+    return arr;
+}
 
 const Item=({key,title, to, icon,selected,setSelected})=>{
     const theme = useTheme();
     const colors = token(theme.palette.mode);
     return(
         <>
-        {key===4 && <Typography> Data </Typography>}
+        {console.log(key)}
+        {key===0 && <Typography> Data </Typography>}
         <MenuItem active={selected===title}
             style={{color:colors.grey[100]}}
             onClick={()=>setSelected(title)}
@@ -120,19 +131,21 @@ const Sidebar=()=>{
                     )}
                     {/* USER ITEM */}
                     <Box paddingLeft={isCollapsed?undefined:"10%"}>
-                        {/* <Item 
+                        <Item 
                             title="Dashboard"
                             to="/"
                             icon={<HomeOutlinedIcon/>}
                             selected={selected}
                             setSelected={setSelected}
-                        /> */}
-                        {
-                            titlesarr.map((tit,i)=>{
-                                return <Item key={i} title={tit} to={linkarr[i]} icon={iconarr[i]} selected={selected} 
-                                setSelected={setSelected} />
-                            })
-                        }
+                        />
+                        <Typography variant="h6" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}> Data  </Typography>
+                        {items(1,3,selected,setSelected)}
+
+                        <Typography variant="h6" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}> Pages  </Typography>
+                        {items(4,6,selected,setSelected)}
+
+                        <Typography variant="h6" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}> Charts </Typography>
+                        {items(7,10,selected,setSelected)}
                         
                     </Box>
                 </Menu>
