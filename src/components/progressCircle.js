@@ -1,5 +1,5 @@
-import { Box, useTheme} from "@mui/material";
-import { token } from "../../theme";
+import { Box, Typography, useTheme} from "@mui/material";
+import { token } from "../theme";
 
 const ProgressCircle=({progress="0.75" , size="40"})=>{
     const theme = useTheme();
@@ -16,8 +16,9 @@ const ProgressCircle=({progress="0.75" , size="40"})=>{
                 height:`${size}px`,
 
             }}
+            textAlign="center"
         >
-
+            <Typography pt="10px">{progress*100}</Typography>
         </Box>
     )
 }
