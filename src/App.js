@@ -7,9 +7,13 @@ import Team from "./scenes/team/team";
 import Contacts from "./scenes/contacts/contacts"
 import Invoices from "./scenes/invoices/invoices";
 import Userform from "./scenes/forms/userForm";
+import Bar from "./scenes/charts/bar";
 // import CalendarBuild from "./scenes/forms/calender";
 import Faq from "./scenes/faq/faq";
 import { Routes,Route } from "react-router-dom";
+import Pie from "./scenes/charts/pie";
+import Line from "./scenes/charts/line";
+import Geo from "./scenes/charts/geo";
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -29,6 +33,10 @@ function App() {
                 <Route path="/profile" element={<Userform/>} />
                 {/* <Route path="/calendar" element={<CalendarBuild/>} /> */}
                 <Route path="/faq" element={<Faq/>} />
+                <Route path="/bar" element={<Bar/>} />
+                <Route path="/pie" element={<Pie/>} />
+                <Route path="/line" element={<Line/>} />
+                <Route path="/geography" element={<Geo/>} />
               </Routes>
 
             </main>

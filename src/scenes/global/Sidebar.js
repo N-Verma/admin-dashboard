@@ -19,7 +19,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 
 const titlesarr = ["Dashboard", "Manage Team","Contact Information","Invoices Balance","Profile Form","Calender","FAQ Page","Bar Chart",
 "Pie Chart","Line Chart","Geography Chart"];
-const linkarr=["/","/team","/contacts","/invoices","/profile","/calendar","/faq","/bar","/line","/pie","/geography"]
+const linkarr=["/","/team","/contacts","/invoices","/profile","/calendar","/faq","/bar","/pie","/line","/geography"]
 const iconarr=[<HomeOutlinedIcon/>,<PeopleOutlinedIcon/>,<ContactsOutlinedIcon/>,<ReceiptOutlinedIcon/>,<PersonOutlineOutlinedIcon/>,
 <CalendarTodayOutlinedIcon/>,<HelpOutlineOutlinedIcon/>,<BarChartOutlinedIcon/>,<PieChartOutlineOutlinedIcon/>,<TimelineOutlinedIcon/>,
 <MapOutlinedIcon/>]
@@ -36,23 +36,19 @@ const items=(i,j,selected,setSelected)=>{
     return arr;
 }
 
-const Item=({key,title, to, icon,selected,setSelected})=>{
+const Item=({title, to, icon,selected,setSelected})=>{
     const theme = useTheme();
     const colors = token(theme.palette.mode);
     return(
-        <>
-        {console.log(key)}
-        {key===0 && <Typography> Data </Typography>}
+        
         <MenuItem active={selected===title}
             style={{color:colors.grey[100]}}
             onClick={()=>setSelected(title)}
-            icon={icon}
-            
-        >
+            icon={icon}>
             <Typography>{title}</Typography>
             <Link to={to} />
         </MenuItem>
-        </>
+        
     )
 }
 
@@ -125,7 +121,7 @@ const Sidebar=()=>{
                             <Box textAlign="center">
                                 <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{m:"10px 0 0 0"}}> 
                                 Hunter </Typography>
-                                <Typography variant="h5" color={colors.grey[500]}> Love sex doka </Typography>
+                                <Typography variant="h5" color={colors.grey[500]}> !!!!!! </Typography>
                             </Box>
                         </Box>
                     )}
